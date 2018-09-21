@@ -148,7 +148,7 @@
           <div class="card-header">Header</div>
           <div class="card-body">
             <h5 class="card-title">Analytics</h5>
-\            <p class="card-text">Will go here</p>
+            \ <p class="card-text">Will go here</p>
           </div>
         </div>
       </div>
@@ -208,17 +208,43 @@
 
 
     {{!-- eating out results card. user will go through results from yelp api and choose winner --}}
-    <div class="card text-center shadow-lg mb-4" id="results-card">
-      <div class="card-header text-white bg-info">
-        <h4>Which one looks better?</h4>
+    <div class="row text-center" id="results-card">
+      <div class="col-md-6 mb-4" id="result1">
+
       </div>
-      <div class="card-body">
-        <h5 class="card-title">Results:</h5>
+      <div class="col-md-6 mb-4" id="result2">
+
       </div>
-      <div class="card-footer text-muted text-right">
-        <a class="btn-sm btn-outline-warning mb-2 startover-button" style="height:10px" href="/" role="button">Start
-          Over</a>
+      <div class="col-md-6 mb-4" id="result3">
+
       </div>
+      <div class="col-md-6 mb-4" id="result4">
+
+      </div>
+      <div class="col-md-6 mb-4" id="result5">
+
+      </div>
+      <div class="col-md-6 mb-4" id="result6">
+
+      </div>
+      <div class="col-md-6 mb-4" id="result7">
+
+      </div>
+      <div class="col-md-6 mb-4" id="result8">
+
+      </div>
+      <div class="col-md-6 mb-4" id="result9">
+
+      </div>
+      <div class="col-md-6 mb-4" id="result10">
+
+      </div>
+
+
+          <div class="card-footer text-muted text-right">
+            <a class="btn-sm btn-outline-warning mb-2 startover-button" style="height:10px" href="/" role="button">Start
+              Over</a>
+          </div>
     </div>
 
     {{!-- animation for loading screen between last question and results card --}}
@@ -281,6 +307,30 @@
       $.post("/api/out", answers, function (res) {
 
         console.log("Submitted: ", answers);
+
+        console.log("This is the submit button response: " + JSON.stringify(res.yelpBusinesses));
+        var xIndex = 1;
+
+        console.log("This is res.length: " + res.yelpBusinesses.length);
+
+        for (var i = 0; i < res.yelpBusinesses.length; i++) {
+
+
+          var name = res.yelpBusinesses.name;
+          var image = res.yelpBusinesses.image_url;
+          var url = res.yelpBusinesses.url;
+          var rating = res.yelpBusinesses.rating;
+          var price = res.yelpBusinesses.price;
+
+
+          // creaiton of elements
+          var resultsCard = $('<div class="card text-center shadow-lg mb-4"><div class="card-header text-white bg-info"><h5 class="card-title">' + name + '</h5><div class="card-body"><ul class="list-group shadow-lg"><li class="list-group-item"><p>' + image + '</p></li><li class="list-group-item"><p>Price:' + price + '</p></li><li class="list-group-item"><p>Rating:' + rating + '</p></li><li class="list-group-item"><p>URL:' + url + '</p></li></ul><button type=submit id="x-' + xIndex + '"class="btn btn-danger btn-lg"><i class="far fa-times-circle"></i></button></div></div></div>');
+
+          $('#result' + xIndex).append(resultsCard);
+
+          xIndex++
+        }
+
         $("#results-card").delay(5000).fadeIn(1000);
       });
     };
