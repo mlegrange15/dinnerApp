@@ -59,9 +59,9 @@
       {{!-- eating in or out stats --}}
       <div class="col-md-3 mb-4">
         <div class="card text-center shadow-lg text-white bg-warning" style="height:210px;max-width: 18rem;">
-          <div class="card-header">Quick Stats</div>
+          <div class="card-header">Quick Stat</div>
           <div class="card-body">
-            <h5 class="card-title">{{outTotal}} People decided to eat out!</h5>
+            <h3 class="card-title">{{outTotal}} People decided to eat out!</h3>
           </div>
         </div>
       </div>
@@ -148,7 +148,7 @@
           <div class="card-header">Header</div>
           <div class="card-body">
             <h5 class="card-title">Analytics</h5>
-            \ <p class="card-text">Will go here</p>
+            <p class="card-text">Will go here</p>
           </div>
         </div>
       </div>
@@ -209,42 +209,37 @@
 
     {{!-- eating out results card. user will go through results from yelp api and choose winner --}}
     <div class="row text-center" id="results-card">
-      <div class="col-md-6 mb-4" id="result1">
+      <div class="col-md-6" id="result1">
 
       </div>
-      <div class="col-md-6 mb-4" id="result2">
+      <div class="col-md-6" id="result2">
 
       </div>
-      <div class="col-md-6 mb-4" id="result3">
+      <div class="col-md-6" id="result3">
 
       </div>
-      <div class="col-md-6 mb-4" id="result4">
+      <div class="col-md-6" id="result4">
 
       </div>
-      <div class="col-md-6 mb-4" id="result5">
+      <div class="col-md-6" id="result5">
 
       </div>
-      <div class="col-md-6 mb-4" id="result6">
+      <div class="col-md-6" id="result6">
 
       </div>
-      <div class="col-md-6 mb-4" id="result7">
+      <div class="col-md-6" id="result7">
 
       </div>
-      <div class="col-md-6 mb-4" id="result8">
+      <div class="col-md-6" id="result8">
 
       </div>
-      <div class="col-md-6 mb-4" id="result9">
+      <div class="col-md-6" id="result9">
 
       </div>
-      <div class="col-md-6 mb-4" id="result10">
+      <div class="col-md-6" id="result10">
 
       </div>
 
-
-      <div class="card-footer text-muted text-right">
-        <a class="btn-sm btn-outline-warning mb-2 startover-button" style="height:10px" href="/" role="button">Start
-          Over</a>
-      </div>
     </div>
 
     {{!-- animation for loading screen between last question and results card --}}
@@ -326,9 +321,9 @@
 
 
           // creaiton of elements
-          var resultsCard = $('<div class="card text-center shadow-lg mb-4"><div class="card-header text-black bg-info"><h5 class="card-title">' + name + '</h5><div class="card-body"><ul class="list-group shadow-lg"><li class="list-group-item"><p>' + image + '</p></li><li class="list-group-item"><p>Price:' + price + '</p></li><li class="list-group-item"><p>Rating:' + rating + '</p></li><li class="list-group-item"><p>URL:' + url + '</p></li></ul><button type=submit id="result' + xIndex + '"class="result-xbutton btn btn-danger btn-lg"><i class="far fa-times-circle"></i></button></div></div></div>');
+          var resultsCard = $('<div class="card text-center shadow-lg mb-4"><div class="card-header text-black bg-info"><h5 class="card-title">' + name + '</h5><div class="card-body"><ul class="list-group shadow-lg"><li class="list-group-item"><img src="' + image + '" height="250px" width="250px"></li><li class="list-group-item"><p>Price:' + price + '</p></li><li class="list-group-item"><p>Rating:' + rating + '</p></li><li class="list-group-item"><a href="' + url + '" target="_blank">SEE YELP PAGE</a></li></ul><button type=submit id="result' + xIndex + '"class="result-xbutton btn btn-danger btn-lg mt-3 mb-3"><i class="far fa-times-circle"></i></button><div class="card-footer text-muted text-right"><a class="btn-sm btn-outline-warning startover-button" style="height:10px" href="/" role="button">Start Over</a></div></div></div></div>');
 
-          $('#result' + xIndex).append(resultsCard);
+          $('#result' + xIndex).prepend(resultsCard);
 
           xIndex++
         }
@@ -406,8 +401,9 @@
       } else {
         var hide = ("#" + this.id);
         $(hide).hide();
-
         nextCardIndex = 3;
+        var winner = $('<div class="col-md-6"><h1>WINNER!</h1></div>')
+        $('#results-card').prepend(winner);
         // the card that's left is your result
       }
     };
