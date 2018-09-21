@@ -316,15 +316,15 @@
         for (var i = 0; i < res.yelpBusinesses.length; i++) {
 
 
-          var name = res.yelpBusinesses.name;
-          var image = res.yelpBusinesses.image_url;
-          var url = res.yelpBusinesses.url;
-          var rating = res.yelpBusinesses.rating;
-          var price = res.yelpBusinesses.price;
+          var name = res.yelpBusinesses[i].name;
+          var image = res.yelpBusinesses[i].image_url;
+          var url = res.yelpBusinesses[i].url;
+          var rating = res.yelpBusinesses[i].rating;
+          var price = res.yelpBusinesses[i].price;
 
 
           // creaiton of elements
-          var resultsCard = $('<div class="card text-center shadow-lg mb-4"><div class="card-header text-white bg-info"><h5 class="card-title">' + name + '</h5><div class="card-body"><ul class="list-group shadow-lg"><li class="list-group-item"><p>' + image + '</p></li><li class="list-group-item"><p>Price:' + price + '</p></li><li class="list-group-item"><p>Rating:' + rating + '</p></li><li class="list-group-item"><p>URL:' + url + '</p></li></ul><button type=submit id="x-' + xIndex + '"class="btn btn-danger btn-lg"><i class="far fa-times-circle"></i></button></div></div></div>');
+          var resultsCard = $('<div class="card text-center shadow-lg mb-4"><div class="card-header text-black bg-info"><h5 class="card-title">' + name + '</h5><div class="card-body"><ul class="list-group shadow-lg"><li class="list-group-item"><p>' + image + '</p></li><li class="list-group-item"><p>Price:' + price + '</p></li><li class="list-group-item"><p>Rating:' + rating + '</p></li><li class="list-group-item"><p>URL:' + url + '</p></li></ul><button type=submit id="x-' + xIndex + '"class="btn btn-danger btn-lg"><i class="far fa-times-circle"></i></button></div></div></div>');
 
           $('#result' + xIndex).append(resultsCard);
 
