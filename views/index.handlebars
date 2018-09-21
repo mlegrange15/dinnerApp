@@ -241,10 +241,10 @@
       </div>
 
 
-          <div class="card-footer text-muted text-right">
-            <a class="btn-sm btn-outline-warning mb-2 startover-button" style="height:10px" href="/" role="button">Start
-              Over</a>
-          </div>
+      <div class="card-footer text-muted text-right">
+        <a class="btn-sm btn-outline-warning mb-2 startover-button" style="height:10px" href="/" role="button">Start
+          Over</a>
+      </div>
     </div>
 
     {{!-- animation for loading screen between last question and results card --}}
@@ -290,7 +290,7 @@
   <script type="text/javascript">
 
     var startApp = function () {
-      $("#location-card, #category-card, #spend-card, #results-card, .loading-screen").hide();
+      $("#location-card, #category-card, #spend-card, #results-card, .loading-screen, #result3, #result4, #result5, #result6, #result7, #result8, #result9, #result10").hide();
     };
 
 
@@ -313,6 +313,8 @@
 
         console.log("This is res.length: " + res.yelpBusinesses.length);
 
+        cards = res.yelpBusinesses.length;
+
         for (var i = 0; i < res.yelpBusinesses.length; i++) {
 
 
@@ -324,7 +326,7 @@
 
 
           // creaiton of elements
-          var resultsCard = $('<div class="card text-center shadow-lg mb-4"><div class="card-header text-black bg-info"><h5 class="card-title">' + name + '</h5><div class="card-body"><ul class="list-group shadow-lg"><li class="list-group-item"><p>' + image + '</p></li><li class="list-group-item"><p>Price:' + price + '</p></li><li class="list-group-item"><p>Rating:' + rating + '</p></li><li class="list-group-item"><p>URL:' + url + '</p></li></ul><button type=submit id="x-' + xIndex + '"class="btn btn-danger btn-lg"><i class="far fa-times-circle"></i></button></div></div></div>');
+          var resultsCard = $('<div class="card text-center shadow-lg mb-4"><div class="card-header text-black bg-info"><h5 class="card-title">' + name + '</h5><div class="card-body"><ul class="list-group shadow-lg"><li class="list-group-item"><p>' + image + '</p></li><li class="list-group-item"><p>Price:' + price + '</p></li><li class="list-group-item"><p>Rating:' + rating + '</p></li><li class="list-group-item"><p>URL:' + url + '</p></li></ul><button type=submit id="result' + xIndex + '"class="result-xbutton btn btn-danger btn-lg"><i class="far fa-times-circle"></i></button></div></div></div>');
 
           $('#result' + xIndex).append(resultsCard);
 
@@ -339,6 +341,7 @@
       $(".loading-screen").show(); setTimeout(function () { $(".loading-screen").hide(); }, 5000);
       submitOutAnswers();
     };
+
 
     $(document).ready(function () {
 
@@ -379,6 +382,37 @@
       });
 
     });
+
+    var cards;
+    var nextCardIndex = 3;
+
+    var flipCards = function () {
+      event.preventDefault();
+
+      console.log("this is this outside x button");
+      console.log(this.id);
+      console.log("cards: " + cards);
+      console.log("next card index: " + nextCardIndex);
+
+      if (nextCardIndex <= cards) {
+
+        var hide = ("#" + this.id);
+
+        $(hide).hide();
+        console.log("this is this inside x button" + this);
+        $('#result' + nextCardIndex).show("slow");
+        // show next card and then:
+        nextCardIndex++
+      } else {
+        var hide = ("#" + this.id);
+        $(hide).hide();
+
+        nextCardIndex = 3;
+        // the card that's left is your result
+      }
+    };
+
+    $(document).on('click', '.result-xbutton', flipCards);
 
   </script>
 
