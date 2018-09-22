@@ -8,15 +8,18 @@
   /* .stats {width: 100%;}
   
 } */
+body {
+  background-color: whitesmoke;
+  font-family: 'Paytone One', sans-serif;
+}
+
+section, .container {
+    font-family: 'Paytone One', sans-serif;
+}
 
 .list-group-item {
   line-height: 2.5;
 }
-
-body {
-  background-color: whitesmoke;
-}
-
 
 * {
   margin: 0;
@@ -135,7 +138,6 @@ html {
 }
 
 /* typing slider */
-
 @keyframes cursor {
   from, to {
     border-color: transparent;
@@ -211,4 +213,35 @@ html {
 .typing-slider p:nth-child(3)::after {
   animation-delay: 10s;
   animation-timing-function: steps(12), step-end;
+}
+
+/* winner stretch */
+.winner {
+  height: 120px;
+  width: 75px;
+  margin: 0 auto;
+  background-color: red;
+  animation-name: stretch;
+  animation-duration: 1.5s; 
+  animation-timing-function: ease-out; 
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-fill-mode: none;
+  animation-play-state: running;
+}
+
+@keyframes stretch {
+  0% {
+    transform: scale(.3);
+    background-color: red;
+    border-radius: 100%;
+  }
+  50% {
+    background-color: orange;
+  }
+  100% {
+    transform: scale(1.5);
+    background-color: yellow;
+  }
 }
